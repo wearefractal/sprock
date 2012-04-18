@@ -6,7 +6,7 @@
 </tr>
 <tr>
 <td>Description</td>
-<td>sprock for v8</td>
+<td>Proxies for v8</td>
 </tr>
 <tr>
 <td>Node Version</td>
