@@ -1,0 +1,29 @@
+{
+   "name":"sprock",
+   "description":"sprock for node",
+   "version":"0.0.1",
+   "homepage":"http://github.com/wearefractal/sprock",
+   "repository":"git://github.com/wearefractal/sprock.git",
+   "author":"Fractal <contact@wearefractal.com> (http://wearefractal.com/)",
+   "main":"./index.js",
+   
+   "dependencies":{
+      "coffee-script":"*"
+   },
+   "devDependencies":{
+      "mocha":"*",
+      "should":"*"
+   },
+   "engines":{
+      "node":">=0.6.14"
+   },
+   "scripts":{
+      "install":"node-waf configure build"
+  },
+   "licenses":[
+      {
+         "type":"MIT",
+         "url":"http://github.com/wearefractal/sprock/raw/master/LICENSE"
+      }
+   ]
+}
