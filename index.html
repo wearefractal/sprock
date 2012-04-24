@@ -1,0 +1,114 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Sprock by wearefractal</title>
+    
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Sprock</h1>
+        <p>Native proxy implementation</p>
+        <p class="view"><a href="https://github.com/wearefractal/sprock">View the Project on GitHub <small>wearefractal/sprock</small></a></p>
+        <ul>
+          <li><a href="https://github.com/wearefractal/sprock/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/wearefractal/sprock/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/wearefractal/sprock">Fork On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h2>Information</h2>
+
+<table>
+<tr>
+<td>Package</td>
+<td>sprock</td>
+</tr>
+<tr>
+<td>Description</td>
+<td>Proxies for v8</td>
+</tr>
+<tr>
+<td>Node Version</td>
+<td>&gt;= 0.6.14</td>
+</tr>
+</table><p>sprock is a native implementation of proxies</p>
+
+<h2>Usage</h2>
+
+<div class="highlight">
+<pre><span class="nv">Sprock = </span><span class="nx">require</span> <span class="s">'sprock'</span>
+
+<span class="nv">obj =</span>
+  <span class="nv">hello: </span><span class="s">'test'</span>
+  <span class="nv">other: </span><span class="s">'tazt'</span>
+
+<span class="nv">trap = </span><span class="nf">(name) -&gt;</span>
+  <span class="k">if</span> <span class="nx">name</span> <span class="o">is</span> <span class="s">'special'</span>
+    <span class="k">return</span> <span class="s">'wot'</span>
+  <span class="k">else</span>
+    <span class="k">return</span> <span class="nx">@</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span>
+
+<span class="nv">prox = </span><span class="k">new</span> <span class="nx">Sprock</span> <span class="nx">obj</span><span class="p">,</span> <span class="nx">trap</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="nx">prox</span><span class="p">.</span><span class="nx">hello</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="nx">prox</span><span class="p">.</span><span class="nx">special</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="nx">prox</span><span class="p">.</span><span class="nx">waaaa</span>
+
+<span class="cm">###</span>
+<span class="cm">Output:</span>
+<span class="cm">"test"</span>
+<span class="cm">"wot"</span>
+<span class="cm">undefined</span>
+
+<span class="cm">###</span>
+</pre>
+</div>
+
+
+<h2>Examples</h2>
+
+<p>You can view further examples in the <a href="https://github.com/wearefractal/sprock/tree/master/examples">example folder.</a></p>
+
+<h2>LICENSE</h2>
+
+<p>(MIT License)</p>
+
+<p>Copyright (c) 2011 Fractal <a href="mailto:contact@wearefractal.com">contact@wearefractal.com</a></p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/wearefractal">wearefractal</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
