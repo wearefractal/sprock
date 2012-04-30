@@ -16,7 +16,7 @@ void Sprock::Initialize(Handle<Object> target)
 
     Local<ObjectTemplate> instance = s_ct->InstanceTemplate();
     instance->SetInternalFieldCount(1);
-    instance->SetNamedPropertyHandler(GetNamedProperty);
+    instance->SetNamedPropertyHandler(GetNamedProperty, SetNamedProperty, QueryNamedProperty);
 
     target->ForceSet(NODE_SYMBOL("Sprock"), s_ct->GetFunction());
 }
@@ -54,9 +54,44 @@ Handle<Value> Sprock::GetNamedProperty(Local<String> name, const AccessorInfo &i
         return scope.Close(real);
     }
     
+    Handle<Object> obj = Object::New();
+    obj->Set(NODE_SYMBOL("type"), NODE_SYMBOL("get"));
+    obj->Set(NODE_SYMBOL("property"), name);
+
     Handle<Value> fnargs[1];
-    fnargs[0] = name;
+    fnargs[0] = obj;
+
     return scope.Close(inst->trap->Call(inst->target, 1, fnargs));
+}
+Handle<Value> Sprock::SetNamedProperty(Local<String> name, Local<Value> value, const AccessorInfo &info) {
+    HandleScope scope;
+    Sprock *inst = ObjectWrap::Unwrap<Sprock>(info.This());
+    assert(inst);
+    assert(inst->trap->IsFunction());
+    assert(inst->target->IsObject());
+    // Is this a property of Sprock? Return if true
+    Handle<Value> real = info.This()->GetPrototype()->ToObject()->Get(name);
+    if (!real->IsUndefined()){
+        return scope.Close(real);
+    }
+
+    Handle<Object> obj = Object::New();
+    obj->Set(NODE_SYMBOL("type"), NODE_SYMBOL("set"));
+    obj->Set(NODE_SYMBOL("property"), name);
+    obj->Set(NODE_SYMBOL("value"), value);
+
+    Handle<Value> fnargs[1];
+    fnargs[0] = obj;
+
+    return scope.Close(inst->trap->Call(inst->target, 1, fnargs));
+}
+Handle<Integer> Sprock::QueryNamedProperty(Local<String> name, const AccessorInfo &info) {
+    HandleScope scope;
+    Sprock *inst = ObjectWrap::Unwrap<Sprock>(info.This());
+    assert(inst);
+    assert(inst->trap->IsFunction());
+    assert(inst->target->IsObject());
+    return scope.Close(Integer::New(None));
 }
 
 extern "C" {

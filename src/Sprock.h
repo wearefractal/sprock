@@ -17,6 +17,8 @@ public:
     static Handle<Value> New(const Arguments &args);
     static void Initialize(Handle<Object> target);
     static Handle<Value> GetNamedProperty(Local<String> name, const AccessorInfo &info);
+    static Handle<Value> SetNamedProperty(Local<String> name, Local<Value> value, const AccessorInfo &info);
+    static Handle<Integer> QueryNamedProperty(Local<String> name, const AccessorInfo &info);
 private:
     Sprock() : ObjectWrap() {};
     ~Sprock() {};
