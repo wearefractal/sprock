@@ -25,11 +25,15 @@ obj =
   hello: 'test'
   other: 'tazt'
 
-trap = (name) ->
-  if name is 'special'
+# type is either 'get' or 'set'
+# property is the name of the property
+# value is the set value if the type is 'set'
+# if you want to chain proxy calls return a new Sprock from the trap
+trap = ({type, property, value}) ->
+  if property is 'special'
     return 'wot'
   else
-    return @[name]
+    return @[property]
 
 prox = new Sprock obj, trap
 

@@ -6,7 +6,6 @@ obj =
   other: 'tazt'
 
 trap = ({type, property, value}) ->
-  console.log type, property, value
   if type is 'get'
     if property is 'fsgfsd'
       return 'wot'
@@ -27,4 +26,16 @@ should.not.exist prox.waaaa
 prox.hello = "hi"
 prox.hello.should.equal "hi"
 
-prox.testi 'test'
+folder = ""
+exec = (cb) -> console.log folder
+obj = {}
+
+trapo = ({type, property, value}) ->
+  if type is 'get'
+    return exec if property is 'run'
+    folder += "#{property}/"
+    return new Sprock obj, trapo
+
+nad = new Sprock obj, trapo
+
+nad.somefolder.somefolder.somefile.run (err, res) ->

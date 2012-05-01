@@ -47,17 +47,10 @@ Handle<Value> Sprock::GetNamedProperty(Local<String> name, const AccessorInfo &i
     assert(inst);
     assert(inst->trap->IsFunction());
     assert(inst->target->IsObject());
-
-    // Is this a property of Sprock? Return if true
-    Handle<Value> real = info.This()->GetPrototype()->ToObject()->Get(name);
-    if (!real->IsUndefined()){
-        return scope.Close(real);
-    }
     
     Handle<Object> obj = Object::New();
     obj->Set(NODE_SYMBOL("type"), NODE_SYMBOL("get"));
     obj->Set(NODE_SYMBOL("property"), name);
-
     Handle<Value> fnargs[1];
     fnargs[0] = obj;
 
@@ -69,17 +62,11 @@ Handle<Value> Sprock::SetNamedProperty(Local<String> name, Local<Value> value, c
     assert(inst);
     assert(inst->trap->IsFunction());
     assert(inst->target->IsObject());
-    // Is this a property of Sprock? Return if true
-    Handle<Value> real = info.This()->GetPrototype()->ToObject()->Get(name);
-    if (!real->IsUndefined()){
-        return scope.Close(real);
-    }
 
     Handle<Object> obj = Object::New();
     obj->Set(NODE_SYMBOL("type"), NODE_SYMBOL("set"));
     obj->Set(NODE_SYMBOL("property"), name);
     obj->Set(NODE_SYMBOL("value"), value);
-
     Handle<Value> fnargs[1];
     fnargs[0] = obj;
 
@@ -91,7 +78,8 @@ Handle<Integer> Sprock::QueryNamedProperty(Local<String> name, const AccessorInf
     assert(inst);
     assert(inst->trap->IsFunction());
     assert(inst->target->IsObject());
-    return scope.Close(Integer::New(None));
+
+    return scope.Close(NODE_CONSTANT(None));
 }
 
 extern "C" {

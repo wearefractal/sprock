@@ -1,7 +1,7 @@
 {
    "name":"sprock",
    "description":"sprock for node",
-   "version":"0.0.1",
+   "version":"0.0.2",
    "homepage":"http://github.com/wearefractal/sprock",
    "repository":"git://github.com/wearefractal/sprock.git",
    "author":"Fractal <contact@wearefractal.com> (http://wearefractal.com/)",
